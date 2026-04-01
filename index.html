@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blox Fruit Shop Pro</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#eef2f7}
+.navbar{
+  position:sticky;top:0;
+  background:#fff;
+  padding:16px 24px;
+  display:flex;
+  justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,.08)
+}
+.nav-left,.nav-right{
+  display:flex;
+  gap:20px;
+  align-items:center;
+  font-weight:600
+}
+.nav-left a{text-decoration:none;color:#4a5568}
+.hero{
+  height:220px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  text-align:center;
+  background:linear-gradient(135deg,#7b341e,#1f2937)
+}
+.container{max-width:1200px;margin:auto;padding:30px 20px}
+.card{
+  background:#fff;
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  margin-bottom:20px
+}
+.btn{
+  background:#2563eb;
+  color:#fff;
+  border:none;
+  padding:10px 16px;
+  border-radius:10px;
+  cursor:pointer;
+  margin-top:10px;
+  margin-right:8px;
+}
+input,select{
+  width:100%;
+  padding:10px;
+  margin:8px 0 12px;
+  border-radius:10px;
+  border:1px solid #ccc
+}
+.status{
+  background:#f1f5f9;
+  padding:8px 12px;
+  border-radius:10px;
+  margin-bottom:10px
+}
+.tab-content{display:none}
+label{display:block;margin-bottom:8px}
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="nav-left">
+    <a href="#" onclick="openTab('caythue');return false;">⚡ Cày Thuê</a>
+    <a href="#" onclick="openTab('taikhoan');return false;">👤 Tài Khoản</a>
+    <a href="#" onclick="openTab('naptien');return false;">💳 Nạp Tiền</a>
+    <a href="#" onclick="openTab('tintuc');return false;">📰 Lịch Sử</a>
+  </div>
+  <div class="nav-right" id="userInfo" onclick="openProfile()" style="cursor:pointer">
+    👨‍💼 Khách | 0đ
+  </div>
+</div>
+
+<section class="hero">
+  <div>
+    <h1>Blox Fruit Shop Pro</h1>
+    <p>Shop cày thuê chọn nhiều dịch vụ + Beli + Frag</p>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- TÀI KHOẢN -->
+  <div class="card tab-content" id="taikhoan">
+    <h2>👤 Tài Khoản</h2>
+    <input id="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Mật khẩu">
+    <button class="btn" onclick="register()">Đăng ký</button>
+    <button class="btn" onclick="login()">Đăng nhập</button>
+    <div id="accountStatus" class="status">Chưa đăng nhập</div>
+  </div>
+
+  <!-- CÀY THUÊ -->
+  <div class="card tab-content" id="caythue">
+    <h2>⚡ Cày Thuê</h2>
+
+    <label><input type="checkbox" class="serviceItem" value="12000"> Level 1-700 - 12k</label>
+    <label><input type="checkbox" class="serviceItem" value="25000"> Level 1-1500 - 25k</label>
+    <label><input type="checkbox" class="serviceItem" value="35000"> Level 1-Max - 35k</label>
+    <label><input type="checkbox" class="serviceItem" value="10000"> Yama - 10k</label>
+    <label><input type="checkbox" class="serviceItem" value="10000"> Tushita - 10k</label>
+    <label><input type="checkbox" class="serviceItem" value="15000"> Godhuman - 15k</label>
+    <label><input type="checkbox" class="serviceItem" value="15000"> Tộc quỷ v3 - 15k</label> 
+    <label><input type="checkbox" class="serviceItem" value="15000"> Tộc máy v3 - 15k</label> 
+    <label><input type="checkbox" class="serviceItem" value="15000"> Tộc thỏ V3- 15k</label> 
+    <label><input type="checkbox" class="serviceItem" value="15000"> Tộc cá v3 - 15k</label> 
+    <label><input type="checkbox" class="serviceItem" value="15000"> Tộc thiên thần v3 - 15k</label> 
+    <label><input type="checkbox" class="serviceItem" value="15000"> Tộc người v3 - 15k</label> 
+    <label><input type="checkbox" class="serviceItem" value="20000"> song kiếm đủ 2 cây - 20k</label> 
+    <label><input type="checkbox" class="serviceItem" value="45000"> song kiếm chưa đủ 2 cây - 45k</label> 
+    <label><input type="checkbox" class="serviceItem" value="10000"> gat cần - 10k</label> 
+    <label><input type="checkbox" class="serviceItem" value="25000"> mảnh gương-gạt cần - 25k</label> 
+    <label><input type="checkbox" class="serviceItem" value="20000"> gat cần gear 1 - 20k</label> 
+    <label><input type="checkbox" class="serviceItem" value="10000"> 1gear - 10k</label> 
+    <label><input type="checkbox" class="serviceItem" value="40000"> full gear - 40k</label>
+    <label><input type="checkbox" class="serviceItem" value="50000">  mele SANGUINE ART  - 50k</label>
+    <label><input type="checkbox" class="serviceItem" value="50000">  lấy tộc rồng đầy đủ v4 gear1  - 70k</label>
+
+    <label>Beli muốn cày (M)</label>
+    <input id="beliAmount" type="number" value="0">
+
+    <label>Frag muốn cày (K)</label>
+    <input id="fragAmount" type="number" value="0">
+
+    <input id="orderQty" type="number" value="1">
+    <input id="gameUser" placeholder="Tài khoản game">
+    <input id="gamePass" type="password" placeholder="Mật khẩu game">
+    <input id="note" placeholder="Ghi chú thêm">
+
+    <button class="btn" onclick="calcPrice()">Tính tổng giá</button>
+    <button class="btn" onclick="placeOrder()">Gửi đơn cày</button>
+
+    <p id="priceResult">💰 Tổng giá: 0đ</p>
+  </div>
+
+  <!-- NẠP TIỀN -->
+  <div class="card tab-content" id="naptien">
+    <h2>💳 Nạp Tiền</h2>
+
+    <select id="paymentMethod">
+      <option>Ngân hàng</option>
+      <option>Momo</option>
+      <option>ZaloPay</option>
+    </select>
+
+    <input id="depositAmount" type="number" placeholder="Nhập số tiền">
+
+    <div id="paymentInfo" class="status">
+      Chọn phương thức và nhập số tiền
+    </div>
+
+    <button class="btn" onclick="requestDeposit()">Tạo mã nạp</button>
+  </div>
+
+  <!-- LỊCH SỬ -->
+  <div class="card tab-content" id="tintuc">
+    <h2>📰 Lịch Sử</h2>
+    <div id="historyList"></div>
+    <button class="btn" onclick="clearHistory()">Xóa lịch sử</button>
+  </div>
+
+  <!-- HỒ SƠ -->
+  <div class="card tab-content" id="profile">
+    <h2>👤 Hồ Sơ</h2>
+    <input id="profileEmail" readonly>
+    <input id="profileBalance" readonly>
+    <input id="oldPassword" type="password" placeholder="Mật khẩu cũ">
+    <input id="newPassword" type="password" placeholder="Mật khẩu mới">
+    <button class="btn" onclick="changePassword()">Đổi mật khẩu</button>
+  </div>
+
+</div>
+
+<script>
+let loggedIn = false;
+
+function getUsers(){
+  return JSON.parse(localStorage.getItem("users") || "[]");
+}
+
+function saveUsers(users){
+  localStorage.setItem("users", JSON.stringify(users));
+}
+
+function getCurrentUser(){
+  return JSON.parse(localStorage.getItem("currentUser") || "null");
+}
+
+function setCurrentUser(user){
+  localStorage.setItem("currentUser", JSON.stringify(user));
+}
+
+function openTab(id){
+  document.querySelectorAll('.tab-content').forEach(el=>el.style.display='none');
+  document.getElementById(id).style.display='block';
+}
+
+function register(){
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  if(!email || !password){
+    alert("❌ Vui lòng nhập email và mật khẩu");
+    return;
+  }
+
+  let users = getUsers();
+
+  if(users.find(u => u.email === email)){
+    alert("❌ Email đã tồn tại");
+    return;
+  }
+
+  const user = {
+    email,
+    password,
+    balance: 0
+  };
+
+  users.push(user);
+  saveUsers(users);
+
+  document.getElementById("accountStatus").innerText = "✅ Đăng ký thành công";
+}
+
+function login(){
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  let users = getUsers();
+  const user = users.find(u => u.email === email && u.password === password);
+
+  if(!user){
+    alert("❌ Sai tài khoản hoặc mật khẩu");
+    return;
+  }
+
+  loggedIn = true;
+  setCurrentUser(user);
+
+  document.getElementById("accountStatus").innerText = "✅ Đăng nhập thành công";
+  updateUserInfo();
+}
+
+function updateUserInfo(){
+  const user = getCurrentUser();
+  if(!user){
+    userInfo.innerText = "👨‍💼 Khách | 0đ";
+    return;
+  }
+  userInfo.innerText = `👨‍💼 ${user.email} | ${(user.balance || 0).toLocaleString('vi-VN')}đ`;
+}
+
+function calcPrice(){
+  const services=document.querySelectorAll('.serviceItem:checked');
+  const qty=+document.getElementById('orderQty').value||1;
+  const beli=+document.getElementById('beliAmount').value||0;
+  const frag=+document.getElementById('fragAmount').value||0;
+
+  let total=0;
+  services.forEach(item=> total += Number(item.value));
+
+  total += beli * 3000;
+  total += frag * 3000;
+  total *= qty;
+
+  document.getElementById('priceResult').innerText =
+    '💰 Tổng giá: '+total.toLocaleString('vi-VN')+'đ';
+
+  return total;
+}
+
+function placeOrder(){
+  const user = getCurrentUser();
+  if(!user){
+    alert("❌ Vui lòng đăng nhập");
+    return;
+  }
+
+  const total = calcPrice();
+  const orders = JSON.parse(localStorage.getItem("orders") || "[]");
+
+  orders.unshift({
+    email: user.email,
+    total: total,
+    time: new Date().toLocaleString("vi-VN"),
+    status: "Chờ xử lý"
+  });
+
+  localStorage.setItem("orders", JSON.stringify(orders));
+
+  addHistory(`📦 Đơn cày | ${total.toLocaleString('vi-VN')}đ`);
+  alert("✅ Đã gửi đơn");
+}
+
+function requestDeposit(){
+  const user = getCurrentUser();
+  if(!user){
+    alert("❌ Vui lòng đăng nhập");
+    return;
+  }
+
+  const amt = +document.getElementById("depositAmount").value || 0;
+  const method = document.getElementById("paymentMethod").value;
+
+  if(amt <= 0){
+    alert("❌ Nhập số tiền");
+    return;
+  }
+
+  const code = "NAP_" + Date.now().toString().slice(-6);
+
+  document.getElementById("paymentInfo").innerHTML = `
+    💳 ${method}<br>
+    💰 ${amt.toLocaleString('vi-VN')}đ<br>
+    📝 Nội dung: <b>${code}</b><br><br>
+    👤 NGUYEN DANG LUONG<br>
+    📱 0328356481
+  `;
+
+  const deposits = JSON.parse(localStorage.getItem("depositRequests") || "[]");
+
+  deposits.unshift({
+    email: user.email,
+    amount: amt,
+    method,
+    code,
+    time: new Date().toLocaleString("vi-VN"),
+    status: "Chờ duyệt"
+  });
+
+  localStorage.setItem("depositRequests", JSON.stringify(deposits));
+
+  addHistory(`💳 ${method} | ${amt.toLocaleString('vi-VN')}đ | ${code}`);
+  alert("✅ Đã tạo yêu cầu nạp");
+}
+
+function openProfile(){
+  const user = getCurrentUser();
+  if(!user){
+    alert("❌ Chưa đăng nhập");
+    return;
+  }
+
+  openTab("profile");
+  profileEmail.value = user.email;
+  profileBalance.value = (user.balance || 0).toLocaleString("vi-VN") + "đ";
+}
+
+function changePassword(){
+  const user = getCurrentUser();
+  if(!user) return;
+
+  if(oldPassword.value !== user.password){
+    alert("❌ Sai mật khẩu cũ");
+    return;
+  }
+
+  let users = getUsers();
+  const index = users.findIndex(u => u.email === user.email);
+
+  users[index].password = newPassword.value;
+  saveUsers(users);
+
+  setCurrentUser(users[index]);
+
+  alert("✅ Đổi mật khẩu thành công");
+}
+
+function addHistory(text){
+  const arr=JSON.parse(localStorage.getItem('history')||'[]');
+  arr.unshift(text);
+  localStorage.setItem('history',JSON.stringify(arr));
+  renderHistory();
+}
+
+function renderHistory(){
+  const arr=JSON.parse(localStorage.getItem('history')||'[]');
+  historyList.innerHTML=arr.map(x=>`<div class="status">${x}</div>`).join('');
+}
+
+function clearHistory(){
+  localStorage.removeItem('history');
+  renderHistory();
+}
+
+renderHistory();
+openTab('caythue');
+updateUserInfo();
+</script>
+<script type="module">
+import { db, collection, addDoc } from './firebase.js';
+
+window.placeOrder = async function () {
+  const total = calcPrice();
+  const email = localStorage.getItem("currentUser") || "Khách";
+
+  await addDoc(collection(db, "orders"), {
+    email: email,
+    service: "Cày thuê Blox Fruit",
+    amount: total,
+    status: "⏳ Chờ xử lý",
+    createdAt: new Date()
+  });
+
+  alert("✅ Đã gửi đơn thành công");
+};
+
+window.requestDeposit = async function () {
+  const amount = +document.getElementById("depositAmount").value;
+  const method = document.getElementById("paymentMethod").value;
+  const email = localStorage.getItem("currentUser") || "Khách";
+
+  const code = "NAP_" + Date.now().toString().slice(-6);
+
+  document.getElementById("paymentInfo").innerHTML = `
+    💳 ${method}<br>
+    💰 ${amount.toLocaleString('vi-VN')}đ<br>
+    📝 Nội dung: <b>${code}</b><br><br>
+    👤 NGUYEN DANG LUONG<br>
+    🔢 0328356481
+  `;
+
+  await addDoc(collection(db, "deposits"), {
+    email: email,
+    amount: amount,
+    method: method,
+    code: code,
+    status: "⏳ Chờ duyệt",
+    createdAt: new Date()
+  });
+
+  alert("✅ Đã tạo yêu cầu nạp");
+};
+</script>
+</body>
+</html>
